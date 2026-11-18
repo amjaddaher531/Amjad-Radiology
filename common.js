@@ -12,7 +12,23 @@ if(CFG.phone){var p=document.getElementById('ph');p.textContent=CFG.phone;p.href
 document.getElementById('bot').onclick=function(){if(CFG.botUrl)window.open(CFG.botUrl,'_blank');else document.getElementById('pop').classList.toggle('on')};
 var cv=document.getElementById('pt'),cx=cv.getContext('2d'),W,H;
 function rz(){W=cv.width=innerWidth;H=cv.height=innerHeight}rz();addEventListener('resize',rz);
-function dots(t){cx.clearRect(0,0,W,H);var g=24,top=H*.38;for(var x=0;x<W;x+=g){for(var y=top;y<H;y+=g){var k=(y-top)/(H-top),w=Math.sin(x*.011+t*.0009+y*.004)*18*k+Math.sin(x*.023-t*.0007)*9*k;var a=.15+.5*k*Math.abs(Math.sin(x*.01+y*.01+t*.0006));cx.fillStyle=((x/g+y/g)%7<1)?'rgba(214,178,92,'+a+')':'rgba(110,200,255,'+a+')';cx.fillRect(x,y+w,1.8,1.8)}}}
+function dots(t){cx.clearRect(0,0,W,H);
+// gold flowing ribbons
+for(var r=0;r<3;r++){var by=H*(.40+.13*r),ph=r*2.1;
+for(var j=0;j<9;j++){cx.beginPath();
+for(var x=-10;x<=W+10;x+=10){var spread=j*(2.2+1.6*Math.sin(x*.0032+ph+t*.00012)),
+y=by+Math.sin(x*.0042+ph+t*.00028)*(46+r*10)+Math.sin(x*.011-t*.0002+ph)*14+spread;
+if(x<=-10)cx.moveTo(x,y);else cx.lineTo(x,y)}
+var g=cx.createLinearGradient(0,0,W,0),al=(.34-j*.028)*(r==1?1:.75);
+g.addColorStop(0,'rgba(214,178,92,0)');g.addColorStop(.3,'rgba(214,178,92,'+al+')');g.addColorStop(.7,'rgba(230,196,110,'+al+')');g.addColorStop(1,'rgba(214,178,92,0)');
+cx.strokeStyle=g;cx.lineWidth=j==0?1.6:1;cx.stroke()}}
+// cyan dotted wave field
+var rows=24,top=H*.36;
+for(var k=0;k<rows;k++){var u=k/(rows-1),y0=top+Math.pow(u,1.55)*(H-top),amp=7+u*34,gap=11+u*7,sz=1.1+u*1.5;
+for(var x=0;x<W;x+=gap){var y=y0+Math.sin(x*.0055+k*.32+t*.00042)*amp+Math.sin(x*.013-t*.00031+k*.9)*amp*.38,
+e=Math.sin(Math.PI*Math.min(1,Math.max(0,x/W))),a=(.42+.58*u)*(.45+.55*e)*(.7+.3*Math.sin(x*.05+k+t*.0012));
+cx.fillStyle=((x/gap+k)%9<1)?'rgba(222,190,110,'+a+')':'rgba(125,215,255,'+a+')';
+cx.fillRect(x,y,sz,sz)}}}
 function pf(t){dots(t);if(!matchMedia('(prefers-reduced-motion:reduce)').matches)requestAnimationFrame(pf)}requestAnimationFrame(pf);
 function lst(c,bd,A){var i=0,C=document.getElementById(c),B=document.getElementById(bd);
 function dr(){C.innerHTML=A.map(function(x,k){return '<button data-i="'+k+'" class="'+(k==i?'on':'')+'">'+b(x[0],x[1])+'</button>'}).join('');var x=A[i];B.innerHTML='<div class="box"><h3>'+b(x[0],x[1])+'</h3><ul>'+x[2].map(function(t){return '<li>'+b(t[0],t[1])+'</li>'}).join('')+'</ul></div>'}
