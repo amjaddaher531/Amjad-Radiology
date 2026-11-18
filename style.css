@@ -75,7 +75,7 @@ footer h3{font-size:18px;color:var(--ice);margin-bottom:12px}footer p,footer a{c
 .fab svg{width:24px;height:24px;flex:none;margin:0 14px}.fab span{opacity:0;padding-left:16px;transition:opacity .25s;font-size:14px}
 .fab a:hover span,.fab a:focus-visible span,.fab button:hover span,.fab button:focus-visible span{opacity:1}
 .skull{display:block;width:100%;height:auto;-webkit-mask-image:linear-gradient(to bottom,#000 78%,transparent);mask-image:linear-gradient(to bottom,#000 78%,transparent);filter:drop-shadow(0 0 50px rgba(61,139,255,.25))}
-#pt{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.55}
+#pt{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.9}
 .gantry{max-width:430px;margin-inline:auto;align-self:end}
 .eyebrow{color:#d6b25c;font-size:13px;margin-bottom:14px;display:flex;align-items:center;gap:12px}.eyebrow::before{content:"";width:34px;height:1px;background:linear-gradient(90deg,#d6b25c,transparent)}
 .eyebrow [data-l=en]{letter-spacing:.2em}

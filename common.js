@@ -12,7 +12,13 @@ if(CFG.phone){var p=document.getElementById('ph');p.textContent=CFG.phone;p.href
 document.getElementById('bot').onclick=function(){if(CFG.botUrl)window.open(CFG.botUrl,'_blank');else document.getElementById('pop').classList.toggle('on')};
 var cv=document.getElementById('pt'),cx=cv.getContext('2d'),W,H;
 function rz(){W=cv.width=innerWidth;H=cv.height=innerHeight}rz();addEventListener('resize',rz);
-function dots(t){cx.clearRect(0,0,W,H);var g=24,top=H*.38;for(var x=0;x<W;x+=g){for(var y=top;y<H;y+=g){var k=(y-top)/(H-top),w=Math.sin(x*.011+t*.0009+y*.004)*18*k+Math.sin(x*.023-t*.0007)*9*k;var a=.15+.5*k*Math.abs(Math.sin(x*.01+y*.01+t*.0006));cx.fillStyle=((x/g+y/g)%7<1)?'rgba(214,178,92,'+a+')':'rgba(110,200,255,'+a+')';cx.fillRect(x,y+w,1.8,1.8)}}}
+function dots(t){cx.clearRect(0,0,W,H);
+var L=[[.30,16,520,.00030,.13],[.38,22,420,-.00026,.11],[.46,28,610,.00022,.10],[.54,20,360,-.00034,.085],[.62,34,700,.00018,.075],[.70,24,460,-.00028,.06],[.78,30,560,.00020,.05]];
+L.forEach(function(w,k){var y0=H*w[0],A=w[1],lam=w[2],sp=w[3],al=w[4]*1.9;
+cx.beginPath();for(var x=-10;x<=W+10;x+=8){var ph=x/lam*6.283,y=y0+Math.sin(ph+t*sp*6.283)*A+Math.sin(ph*2.3-t*sp*4)*A*.35;if(x<=-10)cx.moveTo(x,y);else cx.lineTo(x,y)}
+var g=cx.createLinearGradient(0,0,W,0);g.addColorStop(0,'rgba(110,160,255,0)');g.addColorStop(.35,'rgba(120,170,255,'+al+')');g.addColorStop(.75,'rgba(140,190,255,'+al*1.25+')');g.addColorStop(1,'rgba(110,160,255,0)');
+cx.strokeStyle=g;cx.lineWidth=1.5;cx.stroke();
+if(k%2==0){cx.lineTo(W+10,H);cx.lineTo(-10,H);cx.closePath();var f=cx.createLinearGradient(0,y0-A,0,H);f.addColorStop(0,'rgba(70,120,220,'+al*.16+')');f.addColorStop(1,'rgba(70,120,220,0)');cx.fillStyle=f;cx.fill()}})}
 function pf(t){dots(t);if(!matchMedia('(prefers-reduced-motion:reduce)').matches)requestAnimationFrame(pf)}requestAnimationFrame(pf);
 function lst(c,bd,A){var i=0,C=document.getElementById(c),B=document.getElementById(bd);
 function dr(){C.innerHTML=A.map(function(x,k){return '<button data-i="'+k+'" class="'+(k==i?'on':'')+'">'+b(x[0],x[1])+'</button>'}).join('');var x=A[i];B.innerHTML='<div class="box"><h3>'+b(x[0],x[1])+'</h3><ul>'+x[2].map(function(t){return '<li>'+b(t[0],t[1])+'</li>'}).join('')+'</ul></div>'}
