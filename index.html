@@ -29,8 +29,7 @@ html[lang=en] .hero2 h1{font-size:clamp(44px,6.4vw,84px)}
 .hero2 p{color:var(--mute);max-width:44ch;margin:20px 0 30px}
 .cta{display:inline-block;padding:14px 34px;border-radius:40px;background:linear-gradient(135deg,#1c5fd6,#5b9dff);color:#fff;text-decoration:none;font-weight:500;box-shadow:0 8px 30px var(--glow);transition:transform .3s,box-shadow .3s}.cta:hover,.cta:focus-visible{transform:translateY(-2px);box-shadow:0 12px 38px var(--glow)}
 .gantry svg{width:100%;height:auto;display:block;filter:drop-shadow(0 0 40px var(--glow))}
-.spin{transform-box:view-box;transform-origin:50% 50%;animation:spin 60s linear infinite}
-.spin2{transform-box:view-box;transform-origin:50% 50%;animation:spin 14s linear infinite}
+.spin{transform-box:view-box;transform-origin:50% 50%;animation:spin 30s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:30px 0 90px}
 .card{position:relative;display:flex;flex-direction:column;min-height:270px;text-decoration:none;padding:30px 26px;border-radius:18px;border:1px solid var(--line);background:linear-gradient(165deg,rgba(80,140,255,.18),rgba(14,32,72,.35) 55%);backdrop-filter:blur(6px);overflow:hidden;transition:border-color .35s,transform .35s,box-shadow .35s}
@@ -81,24 +80,75 @@ footer h3{font-size:18px;color:var(--ice);margin-bottom:12px}footer p,footer a{c
 
 <main class="wrap">
 <div class="view" id="v-home">
-<section class="hero2"><div><h1><span data-l="ar">مرجع الأشعة بمستوى المحترفين</span><span data-l="en">Radiology reference, built for professionals</span></h1>
-<p><span data-l="ar">وضعيات وجرعات وتراخيص في مكان واحد، بإشراف أمجد ضاهر.</span><span data-l="en">Positioning, doses and licensing in one place, supervised by Amjad Daher.</span></p>
+<section class="hero2"><div><h1><span data-l="ar">منصة التصوير الإشعاعي الذكية</span><span data-l="en">Advanced Radiology Suite</span></h1>
+<p><span data-l="ar">دقة التصوير وتحليل بالذكاء الاصطناعي. من البروتوكولات إلى التفسير، بكل بساطة.</span><span data-l="en">Precision Imaging and AI-Driven Analysis. From protocols to interpretation, simplified.</span></p>
 <a class="cta" href="#positions"><span data-l="ar">ابدأ بالوضعيات</span><span data-l="en">Start with positioning</span></a></div>
-<div class="gantry"><svg viewBox="0 0 400 400" role="img" aria-label="CT gantry">
-<defs><radialGradient id="c"><stop offset="0" stop-color="#6aa8ff" stop-opacity=".55"/><stop offset="1" stop-color="#1c5fd6" stop-opacity="0"/></radialGradient>
-<linearGradient id="bm" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#6aa8ff" stop-opacity=".9"/><stop offset="1" stop-color="#6aa8ff" stop-opacity="0"/></linearGradient></defs>
-<circle cx="200" cy="200" r="190" fill="url(#c)" opacity=".35"/>
-<circle cx="200" cy="200" r="176" fill="none" stroke="#6aa8ff" stroke-opacity=".5" stroke-width="1.5"/>
-<g class="spin"><circle cx="200" cy="200" r="160" fill="none" stroke="#9cc4ff" stroke-opacity=".6" stroke-width="3" stroke-dasharray="1.5 9"/></g>
-<circle cx="200" cy="200" r="138" fill="none" stroke="#3d8bff" stroke-width="10" stroke-opacity=".28"/>
-<circle cx="200" cy="200" r="138" fill="none" stroke="#6aa8ff" stroke-width="1.2"/>
-<circle cx="200" cy="200" r="108" fill="#050d22" stroke="#6aa8ff" stroke-opacity=".6"/>
-<g class="spin2"><path d="M200 200L200 92" stroke="url(#bm)" stroke-width="2"/><path d="M200 200L228 92L172 92Z" fill="url(#bm)" opacity=".18"/></g>
-<ellipse cx="200" cy="200" rx="74" ry="58" fill="none" stroke="#cfe2ff" stroke-opacity=".75" stroke-width="2"/>
-<ellipse cx="200" cy="200" rx="60" ry="45" fill="#6aa8ff" fill-opacity=".12" stroke="#9cc4ff" stroke-opacity=".5"/>
-<path d="M200 160V240M170 200H230" stroke="#9cc4ff" stroke-opacity=".25"/>
-<circle cx="200" cy="200" r="5" fill="#fff"/>
-<text x="200" y="378" text-anchor="middle" fill="#9cc4ff" fill-opacity=".7" font-size="12" font-family="IBM Plex Sans Arabic" letter-spacing="3">120 kVp · 200 mAs</text>
+<div class="gantry"><svg viewBox="0 0 400 400" role="img" aria-label="AI Medical Skull and Anatomy">
+<defs>
+<radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+  <stop offset="0%" stop-color="#3d8bff" stop-opacity=".35"/>
+  <stop offset="100%" stop-color="#040b1c" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="boneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0%" stop-color="#9cc4ff"/>
+  <stop offset="50%" stop-color="#3d8bff"/>
+  <stop offset="100%" stop-color="#1c5fd6"/>
+</linearGradient>
+<linearGradient id="vessels" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#d4af37"/>
+  <stop offset="100%" stop-color="#ff6b6b"/>
+</linearGradient>
+</defs>
+
+<!-- Background AI Voxel Particles -->
+<circle cx="100" cy="80" r="2" fill="#6aa8ff" opacity="0.6"/>
+<circle cx="320" cy="120" r="1.5" fill="#3d8bff" opacity="0.8"/>
+<circle cx="60" cy="220" r="2.5" fill="#d6e6ff" opacity="0.5"/>
+<circle cx="340" cy="280" r="2" fill="#6aa8ff" opacity="0.7"/>
+<circle cx="180" cy="50" r="1.5" fill="#3d8bff" opacity="0.5"/>
+<circle cx="280" cy="340" r="2.5" fill="#d6e6ff" opacity="0.6"/>
+
+<!-- Dynamic Voxel Grid Ring (Spinning) -->
+<g class="spin" opacity="0.25">
+  <circle cx="200" cy="200" r="170" fill="none" stroke="#6aa8ff" stroke-width="1" stroke-dasharray="4 12"/>
+  <circle cx="200" cy="200" r="140" fill="none" stroke="#3d8bff" stroke-width="1.5" stroke-dasharray="8 16"/>
+</g>
+
+<!-- Central Anatomical Model: Skull, Cervical Spine, and Shoulders -->
+<g transform="translate(20, 10)">
+  <!-- Clavicle / Shoulders base -->
+  <path d="M110 320 Q160 300 200 310 Q240 300 290 320 Q310 340 320 360 L80 360 Q90 340 110 320 Z" fill="#0a1f4a" stroke="url(#boneGrad)" stroke-width="1.5" opacity="0.9"/>
+  
+  <!-- Cervical Vertebrae (Spine) -->
+  <path d="M190 230 L210 230 L208 310 L192 310 Z" fill="url(#boneGrad)" opacity="0.85"/>
+  <path d="M185 245 L215 245 M185 265 L215 265 M185 285 L215 285" stroke="#040b1c" stroke-width="2"/>
+
+  <!-- Blood Vessels & Nerves (Arteries & Veins intertwining) -->
+  <path d="M200 220 Q170 260 140 300 T100 340" fill="none" stroke="url(#vessels)" stroke-width="2" opacity="0.85"/>
+  <path d="M200 220 Q230 260 260 300 T300 340" fill="none" stroke="url(#vessels)" stroke-width="2" opacity="0.85"/>
+  <path d="M195 240 Q150 280 120 330" fill="none" stroke="#3d8bff" stroke-width="1.2" opacity="0.9"/>
+  <path d="M205 240 Q250 280 280 330" fill="none" stroke="#3d8bff" stroke-width="1.2" opacity="0.9"/>
+
+  <!-- Skull Base & Mandible -->
+  <path d="M140 160 Q130 200 160 230 Q180 240 200 235 Q220 240 240 230 Q270 200 260 160 Z" fill="url(#boneGrad)" opacity="0.3"/>
+  
+  <!-- Detailed Wireframe/Mesh Skull -->
+  <path d="M150 140 C140 90 170 60 210 60 C260 60 290 90 290 140 C290 180 270 210 240 220 C220 225 200 225 180 220 C150 210 150 180 150 140 Z" fill="rgba(14,32,72,0.8)" stroke="url(#boneGrad)" stroke-width="2"/>
+  
+  <!-- Facial Structure & Eye Sockets (Wireframe grid style) -->
+  <path d="M175 120 Q190 110 205 120 Q190 140 175 120 Z" fill="#040b1c" stroke="#6aa8ff" stroke-width="1.2"/>
+  <path d="M225 120 Q240 110 255 120 Q240 140 225 120 Z" fill="#040b1c" stroke="#6aa8ff" stroke-width="1.2"/>
+  <path d="M210 135 L205 165 Q210 170 215 165 Z" fill="#040b1c" stroke="#6aa8ff" stroke-width="1.2"/>
+  
+  <!-- Jaw and Teeth details -->
+  <path d="M180 180 Q210 200 240 180 Q250 210 210 220 Q170 210 180 180 Z" fill="none" stroke="#6aa8ff" stroke-width="1.5" stroke-dasharray="2 3"/>
+
+  <!-- Skull Contour Highlights -->
+  <path d="M155 100 Q210 40 275 110" fill="none" stroke="#d6e6ff" stroke-width="1.5" opacity="0.8"/>
+</g>
+
+<!-- Bottom Scan Status Text -->
+<text x="200" y="378" text-anchor="middle" fill="#9cc4ff" fill-opacity="0.8" font-size="12" font-family="IBM Plex Sans Arabic" letter-spacing="2">AI Voxels · 3D Neural Reconstruction</text>
 </svg></div></section>
 <div class="cards">
 <a class="card" href="#positions"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="24" cy="24" r="16"/><circle cx="24" cy="24" r="3"/><path d="M24 4v8M24 36v8M4 24h8M36 24h8"/></svg><h2><span data-l="ar">الوضعيات</span><span data-l="en">Positioning</span></h2><p><span data-l="ar">X-ray، CT، MRI، ماموغرافي</span><span data-l="en">X-ray, CT, MRI, Mammography</span></p></a>
