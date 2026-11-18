@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>الوضعيات | Amjad Radiology</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500;600&family=Cormorant+Garamond:wght@500;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<script>try{if(localStorage.getItem('lang')=='en'){document.documentElement.lang='en';document.documentElement.dir='ltr'}}catch(e){}</script>
+</head>
+<body data-page="positions">
+<main class="wrap page">
+<a class="back" href="index.html"><span data-l="ar">→ الرئيسية</span><span data-l="en">← Home</span></a>
+<h1><span data-l="ar">الوضعيات</span><span data-l="en">Positioning</span></h1>
+<p class="lead"><span data-l="ar">اختر الجهاز ثم الجزء المطلوب.</span><span data-l="en">Pick the modality, then the body part.</span></p>
+<div class="tabs" id="mt"></div><div class="chips" id="pc"></div><div id="pb"></div>
+</main>
+<script src="assets/common.js"></script>
+<script>
+var P={xray:[
+['يد','Hand','PA: الكف على الكاسيت والأصابع متباعدة قليلاً. الشعاع المركزي عمودي على المفصل المشطي السلامي الثالث.','PA: palm on the detector, fingers slightly apart. CR perpendicular to the 3rd MCP joint.'],
+['رسغ','Wrist','PA: الرسغ على الكاسيت، الشعاع عمودي على منتصف الرسغ. للزورقي: انحراف زندي.','PA: wrist on the detector, CR perpendicular to mid-carpus. For the scaphoid: ulnar deviation.'],
+['صدر','Chest','PA واقفاً، SID حوالي 180 سم، شهيق كامل، الكتفان للأمام، الشعاع عند مستوى T7.','PA erect, SID about 180 cm, full inspiration, shoulders rolled forward, CR at T7.'],
+['ركبة','Knee','AP: الساق ممدودة، الشعاع عند المفصل تقريباً 1 سم تحت قمة الرضفة.','AP: leg extended, CR at the joint, about 1 cm below the patellar apex.'],
+['قطني','Lumbar spine','AP مستلقياً، الركبتان مثنيتان لتقليل التقوس، الشعاع عند L4 (مستوى عرف الحرقفة).','AP supine, knees flexed to reduce lordosis, CR at L4 (iliac crest level).']],
+ct:[
+['رأس','Head','مستلقياً، الرأس في الحامل، مسح من قاعدة الجمجمة إلى القمة مع محاذاة الخط الحجاجي الأذني.','Supine, head in holder, scan from skull base to vertex, aligned to the orbitomeatal line.'],
+['صدر','Chest','مستلقياً والذراعان فوق الرأس، حبس نفس عند الشهيق.','Supine, arms above head, breath-hold at inspiration.'],
+['بطن وحوض','Abdomen/Pelvis','حسب البروتوكول: صبغة فموية أو وريدية. تحقق من eGFR والحساسية قبل الصبغة الوريدية.','Per protocol: oral or IV contrast. Check eGFR and allergies before IV contrast.']],
+mri:[
+['دماغ','Brain','ملف الرأس، مستلقياً. استبيان السلامة وإزالة المعادن قبل الدخول.','Head coil, supine. Safety screening and metal removal before entering.'],
+['ركبة','Knee','ملف الركبة، الساق ممدودة وثابتة بالوسائد، دوران خارجي بسيط.','Knee coil, leg extended and padded, slight external rotation.'],
+['قطني','Lumbar spine','ملف العمود، مستلقياً مع دعم الركبتين لراحة المريض وتقليل الحركة.','Spine coil, supine, knees supported for comfort and less motion.']],
+mammo:[
+['CC','CC','ضغط جيد، الحلمة بالمحيط، إظهار أكبر نسيج ثدي ممكن.','Adequate compression, nipple in profile, maximum breast tissue included.'],
+['MLO','MLO','زاوية تقريباً 45 درجة، العضلة الصدرية ظاهرة إلى مستوى الحلمة.','About 45° angle, pectoral muscle visible down to nipple level.']]};
+P.dental=[
+['بيري أبيكال','Periapical','حساس خلف الأسنان بتقنية الموازاة، ويُظهر السن كاملاً مع الذروة.','Sensor behind the teeth using the paralleling technique, showing the whole tooth and apex.'],
+['بايتوينغ','Bitewing','يُظهر تيجان الأسنان الخلفية العلوية والسفلية وقمة العظم السنخي. الأفضل لتسوس الأسطح الملامسة.','Shows crowns of upper and lower posterior teeth and the alveolar crest. Best for interproximal caries.'],
+['بانوراما (OPG)','Panoramic (OPG)','عض على القطعة، الذقن على الدعامة، مستوى فرانكفورت موازٍ للأرض، والخط الناصف عمودي، واللسان على سقف الحلق. إزالة المعادن.','Bite on the block, chin on the support, Frankfort plane parallel to the floor, midsagittal plane vertical, tongue on the palate. Remove metal.'],
+['CBCT للأسنان','Dental CBCT','تصوير ثلاثي الأبعاد بمجال صغير للزرعات والأسنان المطمورة. الجرعة تتعلق بحجم المجال.','Small-FOV 3D imaging for implants and impacted teeth. Dose depends on field size.']];
+P.dexa=[
+['العمود القطني AP','Lumbar spine AP','مستلقياً مع رفع الساقين على كتلة لتسطيح الانحناء القطني. تحليل L1–L4.','Supine with legs raised on a block to flatten lumbar lordosis. Analyse L1–L4.'],
+['عنق الفخذ','Proximal femur','الساق بدوران داخلي حوالي 15–25 درجة ليظهر عنق الفخذ بطوله الكامل.','Leg internally rotated about 15–25° to show the femoral neck in full length.'],
+['الساعد','Forearm','الثلث القريب من الكعبرة (1/3 radius) عند تعذر قياس الورك أو العمود.','The one-third radius site when the hip or spine cannot be measured.'],
+['قبل الفحص','Before the scan','إزالة المعادن، والسؤال عن صبغة أو باريوم حديث، وتجنب الفحص بالحمل.','Remove metal, ask about recent contrast or barium, and avoid scanning during pregnancy.']];
+var M=[['xray','X-ray','X-ray'],['ct','CT','CT'],['mri','MRI','MRI'],['mammo','ماموغرافي','Mammography'],['dental','أسنان','Dental'],['dexa','كثافة العظام','Bone Density (DEXA)']],mi='xray',pi=0;
+function drawM(){document.getElementById('mt').innerHTML=M.map(function(m){return '<button data-m="'+m[0]+'" class="'+(m[0]==mi?'on':'')+'">'+b(m[1],m[2])+'</button>'}).join('');drawP()}
+function drawP(){var L=P[mi];document.getElementById('pc').innerHTML=L.map(function(x,i){return '<button data-p="'+i+'" class="'+(i==pi?'on':'')+'">'+b(x[0],x[1])+'</button>'}).join('');var x=L[pi];document.getElementById('pb').innerHTML='<div class="box"><h3>'+b(x[0],x[1])+'</h3><p>'+b(x[2],x[3])+'</p></div><p class="note">'+b('نضيف تفاصيل كل وضعية تدريجياً: الاستطباب، معايير الصورة، والأخطاء الشائعة.','Details per position are added progressively: indications, image criteria, common errors.')+'</p>'}
+document.getElementById('mt').onclick=function(e){var m=e.target.closest('button');if(m){mi=m.dataset.m;pi=0;drawM()}};
+document.getElementById('pc').onclick=function(e){var m=e.target.closest('button');if(m){pi=+m.dataset.p;drawP()}};
+drawM();
+</script>
+</body>
+</html>

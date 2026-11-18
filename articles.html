@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>المقالات | Amjad Radiology</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500;600&family=Cormorant+Garamond:wght@500;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<script>try{if(localStorage.getItem('lang')=='en'){document.documentElement.lang='en';document.documentElement.dir='ltr'}}catch(e){}</script>
+</head>
+<body data-page="articles">
+<main class="wrap page">
+<a class="back" href="index.html"><span data-l="ar">→ الرئيسية</span><span data-l="en">← Home</span></a>
+<h1><span data-l="ar">التراخيص والمقالات</span><span data-l="en">Licensing &amp; Articles</span></h1>
+<p class="lead"><span data-l="ar">مقالات معتمدة، أسئلة عامة، ومساحة لمشاركتك.</span><span data-l="en">Approved articles, general FAQ, and a space for your contribution.</span></p>
+<div class="box"><h3><span data-l="ar">المقالات المنشورة</span><span data-l="en">Published Articles</span></h3><p><span data-l="ar">لا توجد مقالات منشورة بعد. تظهر هنا بعد المراجعة والموافقة.</span><span data-l="en">No published articles yet. They appear here after review and approval.</span></p></div>
+<div class="box"><h3><span data-l="ar">أرسل مقالك للمراجعة</span><span data-l="en">Submit Your Article</span></h3>
+<p><span data-l="ar">يصلني مقالك أولاً، وإذا وافقت عليه ينشر باسمك.</span><span data-l="en">I review every submission first; approved ones are published under your name.</span></p>
+<div class="row"><div><label><span data-l="ar">الاسم</span><span data-l="en">Name</span></label><input id="an" style="width:220px"></div><div><label><span data-l="ar">العنوان</span><span data-l="en">Title</span></label><input id="at" style="width:300px;max-width:100%"></div></div>
+<div class="row"><div class="full"><label><span data-l="ar">نص المقال</span><span data-l="en">Article text</span></label><textarea id="ax" rows="6"></textarea></div></div>
+<div class="row"><button class="btn" id="send"><span data-l="ar">إرسال للمراجعة</span><span data-l="en">Send for review</span></button></div></div>
+<div class="box"><h3><span data-l="ar">أسئلة عامة</span><span data-l="en">General Questions</span></h3>
+<details><summary><span data-l="ar">كيف أبدأ بترخيص فني الأشعة في الإمارات؟</span><span data-l="en">How do I start licensing as a radiographer in the UAE?</span></summary><p><span data-l="ar">تختلف الجهة حسب الإمارة (DHA دبي، DOH أبوظبي، MOHAP للإمارات الشمالية). المتطلبات تتغير، فراجع الموقع الرسمي للجهة قبل التقديم.</span><span data-l="en">The authority depends on the emirate (DHA Dubai, DOH Abu Dhabi, MOHAP Northern Emirates). Requirements change, so check the official site before applying.</span></p></details>
+<details><summary><span data-l="ar">ما المستندات المعتادة؟</span><span data-l="en">What documents are usually needed?</span></summary><p><span data-l="ar">عادةً الشهادات الأكاديمية، سجل الخبرة، شهادة الترخيص السابق، جواز السفر، وصورة. القائمة الدقيقة عند الجهة المرخِّصة.</span><span data-l="en">Typically degree certificates, experience records, previous license, passport and photo. The exact list comes from the licensing authority.</span></p></details>
+</div>
+</main>
+<script src="assets/common.js"></script>
+<script>
+document.getElementById('send').onclick=function(){var t=document.getElementById('at').value,x=document.getElementById('ax').value,a=document.getElementById('an').value;location.href='mailto:'+CFG.email+'?subject='+encodeURIComponent('Article submission: '+t)+'&body='+encodeURIComponent('Name: '+a+'\n\n'+x)};
+</script>
+</body>
+</html>

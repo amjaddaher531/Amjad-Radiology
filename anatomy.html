@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>التشريح | Amjad Radiology</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500;600&family=Cormorant+Garamond:wght@500;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<script>try{if(localStorage.getItem('lang')=='en'){document.documentElement.lang='en';document.documentElement.dir='ltr'}}catch(e){}</script>
+</head>
+<body data-page="anatomy">
+<main class="wrap page">
+<a class="back" href="index.html"><span data-l="ar">→ الرئيسية</span><span data-l="en">← Home</span></a>
+<h1><span data-l="ar">التشريح</span><span data-l="en">Anatomy</span></h1>
+<p class="lead"><span data-l="ar">اختر المنطقة لتتعرف على أهم البنى الظاهرة بالصورة الشعاعية.</span><span data-l="en">Pick a region to review the key structures seen on radiographs.</span></p>
+<div class="chips" id="ac"></div><div id="ab"></div>
+<p class="note"><span data-l="ar">للأغراض التعليمية فقط وليس للتشخيص.</span><span data-l="en">For educational use only, not for diagnosis.</span></p>
+</main>
+<script src="assets/common.js"></script>
+<script>
+var AN=[['الجمجمة','Skull',[['عظام القبو: الجبهية والجدارية والقذالية والصدغية.','Vault bones: frontal, parietal, occipital and temporal.'],['الدروز: الإكليلي والسهمي واللامي.','Sutures: coronal, sagittal and lambdoid.'],['السرج التركي (Sella turcica) يحتوي الغدة النخامية.','Sella turcica houses the pituitary gland.'],['الجيوب الأنفية: الجبهية، الفكية، الغربالية، الوتدية.','Paranasal sinuses: frontal, maxillary, ethmoid, sphenoid.']]],
+['العمود العنقي','Cervical spine',[['7 فقرات. الأطلس C1 بلا جسم، والمحور C2 له السن (Dens).','7 vertebrae. C1 (atlas) has no body; C2 (axis) has the dens.'],['C7 له زائدة شوكية بارزة (Vertebra prominens).','C7 has a prominent spinous process (vertebra prominens).'],['الانحناء الطبيعي للأمام (Lordosis).','Normal forward curve (lordosis).'],['الثقوب بين الفقرات تظهر أفضل بالوضعية المائلة.','Intervertebral foramina are best seen on oblique views.']]],
+['الصدر','Chest',[['القصبة الهوائية تنقسم عند الجؤجؤ (Carina).','The trachea divides at the carina.'],['القبة الحجابية اليمنى أعلى من اليسرى عادةً.','The right hemidiaphragm is usually higher than the left.'],['الزوايا الضلعية الحجابية يجب أن تكون حادة وواضحة.','Costophrenic angles should be sharp and clear.'],['12 زوجاً من الأضلاع والترقوتان.','12 pairs of ribs and both clavicles.']]],
+['اليد والرسغ','Hand & Wrist',[['8 عظام رسغية: Scaphoid وLunate وTriquetrum وPisiform في الصف القريب، وTrapezium وTrapezoid وCapitate وHamate في الصف البعيد.','8 carpals: scaphoid, lunate, triquetrum, pisiform (proximal row); trapezium, trapezoid, capitate, hamate (distal row).'],['5 مشطيات و14 سلامية.','5 metacarpals and 14 phalanges.'],['الزورقي (Scaphoid) أكثر عظام الرسغ كسراً.','The scaphoid is the most commonly fractured carpal bone.']]],
+['العمود القطني','Lumbar spine',[['5 فقرات قطنية بأجسام كبيرة.','5 lumbar vertebrae with large bodies.'],['بالوضعية المائلة تظهر صورة "الكلب الاسكتلندي" (Scottie dog).','The oblique view shows the “Scottie dog” appearance.'],['الجزء بين المفصلي (Pars interarticularis) هو عنق الكلب.','The pars interarticularis forms the dog’s neck.']]]];
+lst('ac','ab',AN);
+</script>
+</body>
+</html>

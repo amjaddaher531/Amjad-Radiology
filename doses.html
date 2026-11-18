@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>الجرعات | Amjad Radiology</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500;600&family=Cormorant+Garamond:wght@500;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<script>try{if(localStorage.getItem('lang')=='en'){document.documentElement.lang='en';document.documentElement.dir='ltr'}}catch(e){}</script>
+</head>
+<body data-page="doses">
+<main class="wrap page">
+<a class="back" href="index.html"><span data-l="ar">→ الرئيسية</span><span data-l="en">← Home</span></a>
+<h1><span data-l="ar">الجرعات والحاسبات</span><span data-l="en">Doses &amp; Calculators</span></h1>
+<p class="lead"><span data-l="ar">أدوات سريعة للعمل اليومي.</span><span data-l="en">Quick tools for daily work.</span></p>
+<div class="grid2">
+<div class="box"><h3>mAs</h3><p><span data-l="ar">mAs = mA × الزمن (ثانية)</span><span data-l="en">mAs = mA × time (s)</span></p><div class="row"><div><label>mA</label><input id="ma" type="number" value="200"></div><div><label>s</label><input id="ts" type="number" value="0.05" step="0.01"></div><output id="o1"></output></div></div>
+<div class="box"><h3><span data-l="ar">قاعدة 15% للـ kVp</span><span data-l="en">15% kVp Rule</span></h3><p><span data-l="ar">رفع kVp بنسبة 15% يضاعف التعريض تقريباً، فيمكن خفض mAs للنصف.</span><span data-l="en">Raising kVp by 15% roughly doubles exposure, so mAs can be halved.</span></p><div class="row"><div><label>kVp</label><input id="kv" type="number" value="70"></div><div><label>mAs</label><input id="mk" type="number" value="10"></div><output id="o2"></output></div></div>
+<div class="box"><h3><span data-l="ar">التربيع العكسي</span><span data-l="en">Inverse Square</span></h3><p><span data-l="ar">لتعويض تغيير المسافة: mAs الجديد = mAs × (d2 ÷ d1)²</span><span data-l="en">To compensate distance: new mAs = mAs × (d2 ÷ d1)²</span></p><div class="row"><div><label>mAs</label><input id="m3" type="number" value="10"></div><div><label>SID 1</label><input id="d1" type="number" value="100"></div><div><label>SID 2</label><input id="d2" type="number" value="180"></div><output id="o3"></output></div></div>
+<div class="box"><h3><span data-l="ar">مرجع حسب الجسم</span><span data-l="en">Reference by Body Region</span></h3><div class="row"><select id="rs"></select></div><table id="rt"></table></div>
+</div>
+<p class="note"><span data-l="ar">القيم تقريبية للإرشاد فقط وتختلف حسب الجهاز والبروتوكول. اتبع بروتوكول قسمك دائماً.</span><span data-l="en">Values are indicative only and vary by equipment and protocol. Always follow your department protocol.</span></p>
+</main>
+<script src="assets/common.js"></script>
+<script>
+var D=[['يد','Hand','50–60','2–4','< 0.01 mSv'],['ركبة','Knee','60–70','4–8','< 0.01 mSv'],['صدر PA','Chest PA','110–125','2–4','~0.02 mSv'],['قطني AP','Lumbar AP','75–85','20–35','~0.7 mSv'],['CT رأس','CT Head','100–120','حسب الجهاز','~2 mSv'],['CT صدر','CT Chest','100–120','حسب الجهاز','~7 mSv'],['CT بطن وحوض','CT Abd/Pelvis','100–120','حسب الجهاز','~8–10 mSv'],['ماموغرافي','Mammography','25–32','حسب الجهاز','~0.4 mSv']];
+D.push(['أسنان بيري أبيكال','Dental periapical','60–70','حسب الجهاز','< 0.01 mSv'],['بانوراما أسنان','Dental panoramic','60–90','حسب الجهاز','~0.01–0.03 mSv'],['كثافة العظام DEXA','Bone densitometry (DEXA)','حسب الجهاز','حسب الجهاز','< 0.01 mSv']);
+var rs=document.getElementById('rs');rs.innerHTML=D.map(function(d,i){return '<option value="'+i+'">'+d[0]+' / '+d[1]+'</option>'}).join('');
+function drawR(){var d=D[rs.value];document.getElementById('rt').innerHTML='<tr><th>kVp</th><td dir="ltr">'+(d[2]=='حسب الجهاز'?b('حسب الجهاز','Per scanner'):d[2])+'</td></tr><tr><th>mAs</th><td>'+(d[3]=='حسب الجهاز'?b('حسب الجهاز','Per scanner'):d[3])+'</td></tr><tr><th>'+b('جرعة فعالة تقريبية','Approx. effective dose')+'</th><td dir="ltr">'+d[4]+'</td></tr>'}
+rs.onchange=drawR;drawR();
+function n(i){return +document.getElementById(i).value}
+function calc(){document.getElementById('o1').textContent=(n('ma')*n('ts')).toFixed(1)+' mAs';
+document.getElementById('o2').innerHTML='kVp '+Math.round(n('kv')*1.15)+' · '+(n('mk')/2).toFixed(1)+' mAs';
+document.getElementById('o3').textContent=n('d1')>0?(n('m3')*Math.pow(n('d2')/n('d1'),2)).toFixed(1)+' mAs':'—'}
+document.querySelectorAll('#v-doses input').forEach(function(i){i.oninput=calc});calc();
+</script>
+</body>
+</html>

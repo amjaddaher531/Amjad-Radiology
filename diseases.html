@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>الأمراض | Amjad Radiology</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500;600&family=Cormorant+Garamond:wght@500;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<script>try{if(localStorage.getItem('lang')=='en'){document.documentElement.lang='en';document.documentElement.dir='ltr'}}catch(e){}</script>
+</head>
+<body data-page="diseases">
+<main class="wrap page">
+<a class="back" href="index.html"><span data-l="ar">→ الرئيسية</span><span data-l="en">← Home</span></a>
+<h1><span data-l="ar">الأمراض</span><span data-l="en">Diseases</span></h1>
+<p class="lead"><span data-l="ar">علامات الأمراض الشائعة وكيف تظهر على الصور.</span><span data-l="en">Common conditions and how they appear on imaging.</span></p>
+<div class="chips" id="dc"></div><div id="db"></div>
+<p class="note"><span data-l="ar">للأغراض التعليمية فقط وليس للتشخيص.</span><span data-l="en">For educational use only, not for diagnosis.</span></p>
+</main>
+<script src="assets/common.js"></script>
+<script>
+var DS=[['كسر','Fracture',[['خط شفاف عبر القشرة مع انقطاع أو انزياح.','A lucent line across the cortex with a break or step-off.'],['الفحص الأول: أشعة سينية بمسقطين على الأقل.','First-line: X-ray in at least two views.'],['CT عند الكسور المعقدة أو داخل المفصل.','CT for complex or intra-articular fractures.']]],
+['التهاب رئوي','Pneumonia',[['تكثّف (Consolidation) مع علامة القصبات الهوائية (Air bronchogram).','Consolidation with air bronchograms.'],['الفحص الأول: أشعة صدر. CT عند التعقيد أو عدم الاستجابة.','First-line: chest X-ray. CT if complicated or not responding.']]],
+['استرواح الصدر','Pneumothorax',[['خط الجنب الحشوي ولا توجد أوعية رئوية خلفه.','A visceral pleural line with no lung markings beyond it.'],['يظهر أفضل في الأشعة الواقفة.','Best seen on an erect film.'],['الاسترواح الضاغط حالة طارئة سريرياً ولا يُنتظر له التصوير.','Tension pneumothorax is a clinical emergency; do not wait for imaging.']]],
+['انصباب جنبي','Pleural effusion',[['طمس الزاوية الضلعية الحجابية وحافة علوية مقعّرة (Meniscus).','Blunted costophrenic angle with a concave upper edge (meniscus sign).'],['وضعية الاستلقاء الجانبي (Decubitus) تؤكد أن السائل حر.','A lateral decubitus view confirms free-flowing fluid.']]],
+['هشاشة العظام','Osteoporosis',[['نقص كثافة العظم وترقق القشرة.','Reduced bone density and cortical thinning.'],['التشخيص بجهاز DEXA: T-score يساوي -2.5 أو أقل.','Diagnosed with DEXA: T-score of -2.5 or lower.'],['T-score بين -1.0 و-2.5 يعني نقص كثافة (Osteopenia).','A T-score between -1.0 and -2.5 indicates osteopenia.']]],
+['سكتة دماغية','Stroke',[['CT بدون صبغة أولاً لاستبعاد النزف.','Non-contrast CT first to exclude haemorrhage.'],['علامات الاحتشاء المبكر: فقدان التمايز بين المادة الرمادية والبيضاء.','Early infarct signs: loss of grey-white matter differentiation.'],['الزمن عامل حاسم، فتُبلَّغ النتيجة فوراً.','Time is critical, so results are communicated immediately.']]],
+['حصى الكلى','Kidney stones',[['CT للمسالك البولية بدون صبغة هو الأدق.','Non-contrast CT KUB is the most accurate.'],['الأشعة السينية تُظهر الحصى المعتمة فقط.','X-ray shows only radio-opaque stones.']]]];
+lst('dc','db',DS);
+</script>
+</body>
+</html>
