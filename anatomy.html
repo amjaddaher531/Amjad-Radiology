@@ -5,25 +5,56 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>التشريح | Amjad Radiology</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500;600&family=Cormorant+Garamond:wght@500;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@700&display=swap">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 <script>try{if(localStorage.getItem('lang')=='en'){document.documentElement.lang='en';document.documentElement.dir='ltr'}}catch(e){}</script>
+<script type="importmap">{"imports":{"three":"./three.module.js"}}</script>
+<style>
+.stage{position:relative;height:clamp(480px,calc(100vh - 250px),780px);border:1px solid var(--line);border-radius:18px;overflow:hidden;background:radial-gradient(ellipse at 50% 35%,rgba(61,139,255,.16),transparent 65%),rgba(3,10,26,.55);touch-action:none;direction:ltr}
+.stage canvas{display:block;width:100%;height:100%;outline:0}
+.panel{position:absolute;z-index:3;background:rgba(6,18,42,.72);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:14px;color:var(--text)}
+#layers{left:12px;top:12px;min-width:190px}
+#layers h4{margin:0 0 8px;font:600 13px "IBM Plex Sans Arabic",sans-serif;color:var(--mute);letter-spacing:.04em}
+.lay{display:flex;align-items:center;gap:9px;padding:5px 0;cursor:pointer;user-select:none;direction:inherit}
+html[lang=ar] .lay{direction:rtl}
+.lay input{width:auto;accent-color:#3d8bff;margin:0}.lay i{width:10px;height:10px;border-radius:50%;flex:none}.lay small{margin-inline-start:auto;color:var(--mute);font-size:11px}
+#regions{right:12px;top:12px;display:flex;flex-direction:column;gap:6px;padding:10px}
+#regions button{background:none;border:1px solid var(--line);color:var(--ice);padding:6px 14px;border-radius:20px;font:inherit;font-size:13px;cursor:pointer;text-align:center;transition:all .2s}
+#regions button:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+#sbox{left:50%;top:12px;transform:translateX(-50%);width:min(300px,34%);padding:6px 10px}
+#sbox input{width:100%;border:0;background:transparent;padding:6px 4px;font-size:14px}#sbox input:focus{box-shadow:none}
+#sres{margin-top:4px;max-height:220px;overflow:auto}#sres div{padding:6px 4px;cursor:pointer;border-top:1px solid var(--line);font-size:13px}#sres div:hover{background:rgba(61,139,255,.2)}
+#info{left:12px;bottom:12px;max-width:min(380px,calc(100% - 24px));display:none}
+#info.on{display:block}
+#info .ar{font:600 22px "Noto Kufi Arabic",sans-serif;color:#ffd36b;direction:rtl}
+#info .en{font:600 20px "Cormorant Garamond",serif;color:var(--ice);margin-top:2px}
+#info .la{font:italic 500 17px "Cormorant Garamond",serif;color:var(--mute)}
+#info .meta{font-size:12px;color:var(--mute);margin-top:6px}
+#info button{position:absolute;top:6px;right:8px;background:none;border:0;color:var(--mute);font-size:18px;cursor:pointer;padding:2px 6px}
+#tip{position:absolute;z-index:4;pointer-events:none;background:rgba(3,10,26,.9);border:1px solid var(--line);border-radius:8px;padding:3px 9px;font-size:12px;display:none;white-space:nowrap}
+#hint{position:absolute;right:12px;bottom:10px;font-size:12px;color:var(--mute);z-index:2;pointer-events:none}
+#load{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:5;font-size:14px;color:var(--ice);display:none;background:rgba(3,10,26,.8);padding:8px 18px;border-radius:20px}
+.credits{margin-top:18px}.credits a{color:var(--mute)}
+@media(max-width:800px){.stage{height:72vh}#sbox{width:calc(100% - 24px);top:auto;bottom:12px;left:12px;transform:none}#info{bottom:70px}#hint{display:none}#layers{min-width:150px}}
+</style>
 </head>
 <body data-page="anatomy">
 <main class="wrap page">
 <a class="back" href="index.html"><span data-l="ar">→ الرئيسية</span><span data-l="en">← Home</span></a>
 <h1><span data-l="ar">التشريح</span><span data-l="en">Anatomy</span></h1>
-<p class="lead"><span data-l="ar">اختر المنطقة لتتعرف على أهم البنى الظاهرة بالصورة الشعاعية.</span><span data-l="en">Pick a region to review the key structures seen on radiographs.</span></p>
-<div class="chips" id="ac"></div><div id="ab"></div>
-<p class="note"><span data-l="ar">للأغراض التعليمية فقط وليس للتشخيص.</span><span data-l="en">For educational use only, not for diagnosis.</span></p>
+<p class="lead"><span data-l="ar">جسم إنسان ثلاثي الأبعاد. دوّر وكبّر، شغّل الطبقات، واضغط على أي بنية لتعرف اسمها بالعربية والإنجليزية واللاتينية.</span><span data-l="en">A 3D human body. Rotate and zoom, switch layers, and tap any structure to see its name in Arabic, English and Latin.</span></p>
+<div class="stage" id="stage">
+<canvas id="cv"></canvas>
+<div class="panel" id="layers"><h4><span data-l="ar">الطبقات</span><span data-l="en">LAYERS</span></h4></div>
+<div class="panel" id="sbox"><input id="q" type="search" autocomplete="off" placeholder="Search / بحث"><div id="sres"></div></div>
+<div class="panel" id="regions"></div>
+<div class="panel" id="info"><button id="x" aria-label="close">×</button><div class="ar" id="iar"></div><div class="en" id="ien"></div><div class="la" id="ila"></div><div class="meta" id="imeta"></div></div>
+<div id="tip"></div><div id="load"></div>
+<div id="hint"><span data-l="ar">اسحب للتدوير · قرّص للتكبير</span><span data-l="en">Drag to rotate · pinch to zoom</span></div>
+</div>
+<p class="note"><span data-l="ar">للأغراض التعليمية فقط. الأسماء العربية مسودة قيد المراجعة، وبعض البنى تظهر بالإنجليزية واللاتينية فقط حالياً.</span><span data-l="en">For educational use only. Arabic names are a draft under review; some structures currently show English and Latin only.</span></p>
+<p class="note credits"><span data-l="ar">النموذج ثلاثي الأبعاد: <a href="https://github.com/Z-Anatomy" target="_blank" rel="noopener">Z-Anatomy</a> (مبني على BodyParts3D)، بترخيص <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>. تم تحويله وتبسيطه للعرض على الويب.</span><span data-l="en">3D model: <a href="https://github.com/Z-Anatomy" target="_blank" rel="noopener">Z-Anatomy</a> (based on BodyParts3D), licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>. Converted and simplified for the web.</span></p>
 </main>
-<script src="common.js?v=3"></script>
-<script>
-var AN=[['الجمجمة','Skull',[['عظام القبو: الجبهية والجدارية والقذالية والصدغية.','Vault bones: frontal, parietal, occipital and temporal.'],['الدروز: الإكليلي والسهمي واللامي.','Sutures: coronal, sagittal and lambdoid.'],['السرج التركي (Sella turcica) يحتوي الغدة النخامية.','Sella turcica houses the pituitary gland.'],['الجيوب الأنفية: الجبهية، الفكية، الغربالية، الوتدية.','Paranasal sinuses: frontal, maxillary, ethmoid, sphenoid.']]],
-['العمود العنقي','Cervical spine',[['7 فقرات. الأطلس C1 بلا جسم، والمحور C2 له السن (Dens).','7 vertebrae. C1 (atlas) has no body; C2 (axis) has the dens.'],['C7 له زائدة شوكية بارزة (Vertebra prominens).','C7 has a prominent spinous process (vertebra prominens).'],['الانحناء الطبيعي للأمام (Lordosis).','Normal forward curve (lordosis).'],['الثقوب بين الفقرات تظهر أفضل بالوضعية المائلة.','Intervertebral foramina are best seen on oblique views.']]],
-['الصدر','Chest',[['القصبة الهوائية تنقسم عند الجؤجؤ (Carina).','The trachea divides at the carina.'],['القبة الحجابية اليمنى أعلى من اليسرى عادةً.','The right hemidiaphragm is usually higher than the left.'],['الزوايا الضلعية الحجابية يجب أن تكون حادة وواضحة.','Costophrenic angles should be sharp and clear.'],['12 زوجاً من الأضلاع والترقوتان.','12 pairs of ribs and both clavicles.']]],
-['اليد والرسغ','Hand & Wrist',[['8 عظام رسغية: Scaphoid وLunate وTriquetrum وPisiform في الصف القريب، وTrapezium وTrapezoid وCapitate وHamate في الصف البعيد.','8 carpals: scaphoid, lunate, triquetrum, pisiform (proximal row); trapezium, trapezoid, capitate, hamate (distal row).'],['5 مشطيات و14 سلامية.','5 metacarpals and 14 phalanges.'],['الزورقي (Scaphoid) أكثر عظام الرسغ كسراً.','The scaphoid is the most commonly fractured carpal bone.']]],
-['العمود القطني','Lumbar spine',[['5 فقرات قطنية بأجسام كبيرة.','5 lumbar vertebrae with large bodies.'],['بالوضعية المائلة تظهر صورة "الكلب الاسكتلندي" (Scottie dog).','The oblique view shows the “Scottie dog” appearance.'],['الجزء بين المفصلي (Pars interarticularis) هو عنق الكلب.','The pars interarticularis forms the dog’s neck.']]]];
-lst('ac','ab',AN);
-</script>
+<script src="common.js?v=4"></script>
+<script type="module" src="anatomy.js?v=1"></script>
 </body>
 </html>
