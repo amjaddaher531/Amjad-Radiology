@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 import {GLTFLoader} from './GLTFLoader.js';
 import {OrbitControls} from './OrbitControls.js';
-const stage=document.getElementById('stage'),cv=document.getElementById('cv');
-const R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});R.setPixelRatio(Math.min(devicePixelRatio,2));
+const stage=document.getElementById('cvw'),cv=document.getElementById('cv');
+const R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});R.setPixelRatio(Math.min(devicePixelRatio,innerWidth<800?1.5:2));
 const scene=new THREE.Scene();
 const cam=new THREE.PerspectiveCamera(35,1,.02,30);cam.position.set(0,.95,3.0);
 const ctl=new OrbitControls(cam,cv);ctl.target.set(0,.88,0);ctl.enableDamping=true;ctl.dampingFactor=.08;ctl.minDistance=.12;ctl.maxDistance=5;ctl.screenSpacePanning=true;ctl.update();
@@ -10,7 +10,7 @@ scene.add(new THREE.HemisphereLight(0xcfe2ff,0x0a1a40,1.15));
 const d1=new THREE.DirectionalLight(0xffffff,1.9);d1.position.set(1.5,2.5,3);scene.add(d1);
 const d2=new THREE.DirectionalLight(0x6aa8ff,1.4);d2.position.set(-2,1.5,-2.5);scene.add(d2);
 function size(){const w=stage.clientWidth,h=stage.clientHeight;R.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
-addEventListener('resize',size);size();
+addEventListener('resize',size);new ResizeObserver(size).observe(stage);size();
 const LAY=[
  {k:'skeleton',ar:'العظام والغضاريف',en:'Bones & cartilage',c:0xe3ebf7,mb:3.5,on:1},
  {k:'muscles',ar:'العضلات',en:'Muscles',c:0xb5524f,op:.92,mb:6.5},

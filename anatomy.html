@@ -4,13 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>التشريح | Amjad Radiology</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500;600&family=Cormorant+Garamond:wght@500;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@700&display=swap">
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500;600&family=Cormorant+Garamond:wght@500;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="style.css?v=5">
 <script>try{if(localStorage.getItem('lang')=='en'){document.documentElement.lang='en';document.documentElement.dir='ltr'}}catch(e){}</script>
 <script type="importmap">{"imports":{"three":"./three.module.js"}}</script>
 <style>
 .stage{position:relative;height:clamp(480px,calc(100vh - 250px),780px);border:1px solid var(--line);border-radius:18px;overflow:hidden;background:radial-gradient(ellipse at 50% 35%,rgba(61,139,255,.16),transparent 65%),rgba(3,10,26,.55);touch-action:none;direction:ltr}
 .stage canvas{display:block;width:100%;height:100%;outline:0}
+.cv{position:absolute;inset:0}
 .panel{position:absolute;z-index:3;background:rgba(6,18,42,.72);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:14px;color:var(--text)}
 #layers{left:12px;top:12px;min-width:190px}
 #layers h4{margin:0 0 8px;font:600 13px "IBM Plex Sans Arabic",sans-serif;color:var(--mute);letter-spacing:.04em}
@@ -34,7 +35,13 @@ html[lang=ar] .lay{direction:rtl}
 #hint{position:absolute;right:12px;bottom:10px;font-size:12px;color:var(--mute);z-index:2;pointer-events:none}
 #load{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:5;font-size:14px;color:var(--ice);display:none;background:rgba(3,10,26,.8);padding:8px 18px;border-radius:20px}
 .credits{margin-top:18px}.credits a{color:var(--mute)}
-@media(max-width:800px){.stage{height:72vh}#sbox{width:calc(100% - 24px);top:auto;bottom:12px;left:12px;transform:none}#info{bottom:70px}#hint{display:none}#layers{min-width:150px}}
+@media(max-width:800px){
+ .stage{height:auto;overflow:visible;background:none;border:0;display:flex;flex-direction:column;gap:10px}
+ .cv{position:relative;inset:auto;height:56vh;min-height:340px;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:radial-gradient(ellipse at 50% 35%,rgba(61,139,255,.16),transparent 65%),rgba(3,10,26,.55)}
+ #layers,#sbox,#regions,#info{position:static;transform:none;width:auto;min-width:0;left:auto;right:auto;top:auto;bottom:auto}
+ #sbox{order:1}#regions{order:2;flex-direction:row;flex-wrap:wrap;gap:6px}#layers{order:3;display:grid;grid-template-columns:1fr 1fr;column-gap:14px}#layers h4{grid-column:1/-1}#info{order:0}
+ #regions button{padding:6px 12px}.lay small{display:none}#hint{display:none}
+}
 </style>
 </head>
 <body data-page="anatomy">
@@ -43,18 +50,16 @@ html[lang=ar] .lay{direction:rtl}
 <h1><span data-l="ar">التشريح</span><span data-l="en">Anatomy</span></h1>
 <p class="lead"><span data-l="ar">جسم إنسان ثلاثي الأبعاد. دوّر وكبّر، شغّل الطبقات، واضغط على أي بنية لتعرف اسمها بالعربية والإنجليزية واللاتينية.</span><span data-l="en">A 3D human body. Rotate and zoom, switch layers, and tap any structure to see its name in Arabic, English and Latin.</span></p>
 <div class="stage" id="stage">
-<canvas id="cv"></canvas>
+<div class="cv" id="cvw"><canvas id="cv"></canvas><div id="tip"></div><div id="load"></div><div id="hint"><span data-l="ar">اسحب للتدوير · قرّص للتكبير</span><span data-l="en">Drag to rotate · pinch to zoom</span></div></div>
 <div class="panel" id="layers"><h4><span data-l="ar">الطبقات</span><span data-l="en">LAYERS</span></h4></div>
 <div class="panel" id="sbox"><input id="q" type="search" autocomplete="off" placeholder="Search / بحث"><div id="sres"></div></div>
 <div class="panel" id="regions"></div>
 <div class="panel" id="info"><button id="x" aria-label="close">×</button><div class="ar" id="iar"></div><div class="en" id="ien"></div><div class="la" id="ila"></div><div class="meta" id="imeta"></div></div>
-<div id="tip"></div><div id="load"></div>
-<div id="hint"><span data-l="ar">اسحب للتدوير · قرّص للتكبير</span><span data-l="en">Drag to rotate · pinch to zoom</span></div>
 </div>
 <p class="note"><span data-l="ar">للأغراض التعليمية فقط. الأسماء العربية مسودة قيد المراجعة، وبعض البنى تظهر بالإنجليزية واللاتينية فقط حالياً.</span><span data-l="en">For educational use only. Arabic names are a draft under review; some structures currently show English and Latin only.</span></p>
 <p class="note credits"><span data-l="ar">النموذج ثلاثي الأبعاد: <a href="https://github.com/Z-Anatomy" target="_blank" rel="noopener">Z-Anatomy</a> (مبني على BodyParts3D)، بترخيص <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>. تم تحويله وتبسيطه للعرض على الويب.</span><span data-l="en">3D model: <a href="https://github.com/Z-Anatomy" target="_blank" rel="noopener">Z-Anatomy</a> (based on BodyParts3D), licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>. Converted and simplified for the web.</span></p>
 </main>
-<script src="common.js?v=4"></script>
-<script type="module" src="anatomy.js?v=1"></script>
+<script src="common.js?v=5"></script>
+<script type="module" src="anatomy.js?v=2"></script>
 </body>
 </html>

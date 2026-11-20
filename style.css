@@ -107,3 +107,14 @@ body{overflow-x:hidden}.hero2{direction:ltr;align-items:center}html[lang=ar] .he
 .card svg{color:#74b0ff;filter:drop-shadow(0 0 5px rgba(90,160,255,.95)) drop-shadow(0 0 14px rgba(61,139,255,.55));animation:ipulse 4s ease-in-out infinite}
 @keyframes ipulse{50%{filter:drop-shadow(0 0 9px rgba(140,195,255,1)) drop-shadow(0 0 24px rgba(61,139,255,.8))}}
 .card:hover,.card:focus-visible{box-shadow:0 0 38px rgba(61,139,255,.3),inset 0 0 34px rgba(61,139,255,.12)}
+
+/* mobile performance and header */
+@media(max-width:800px){
+ header{padding:8px 14px;backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(4,11,28,.94)}
+ .logo img{height:26px}.brand{font-size:19px;letter-spacing:.01em;white-space:nowrap}.right{gap:10px}.lang{padding:4px 11px;font-size:13px}
+ .card,.box,.panel,.side,.stage{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+ .card::before{animation:none}.card svg{animation:none}
+ .beam,.beamc{filter:none}.beamc{display:none}
+ body::before{display:none}
+ .hero2{padding-top:20px}
+}
